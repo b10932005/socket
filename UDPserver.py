@@ -7,5 +7,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     while True:
         data, addr = s.recvfrom(1024)
         if not data:
-            break
+            s.close()
         s.sendto(f"NTUST welcome {data.decode()}".encode(), addr)
