@@ -8,8 +8,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     conn, addr = s.accept()
     with conn:
         # print(f"Connected by {addr}")
-        while True:
-            data = conn.recv(1024)
-            if not data:
-                break
-            conn.send(f"NTUST welcome {data.decode()}".encode())
+        data = conn.recv(1024)
+        if not data:
+            conn.close()
+        conn.send(f"NTUST welcome {data.decode()}".encode())
